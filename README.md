@@ -14,6 +14,6 @@ Understand to use [FastAPI](https://fastapi.tiangolo.com/) and keep working to u
 
 ## TODOs
 
-- [ ] Improve the update route logic
+- [x] Improve the update route logic
 - [ ] Interact with a real DB (ORM)
 - [ ] Deploy to fly.io
