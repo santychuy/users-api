@@ -15,4 +15,4 @@ def root():
     return "Users API"
 
 
-app.include_router(user, prefix="/api/v1/users")
+app.include_router(user)

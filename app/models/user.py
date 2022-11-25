@@ -10,3 +10,4 @@ class User(Base):
     id = Column("id", Integer, primary_key=True)
     fullname = Column("fullname", String(30), nullable=False)
     username = Column("username", String(30), nullable=False)
+    gender = Column("gender", String, nullable=False, default="male")

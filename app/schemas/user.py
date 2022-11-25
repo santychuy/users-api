@@ -1,6 +1,5 @@
 from typing import Optional
-from uuid import uuid4, UUID
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
 from enum import Enum
 
 
@@ -13,6 +12,7 @@ class UserSchema(BaseModel):
     id: int
     fullname: str
     username: str
+    gender: Gender
 
     class Config:
         orm_mode = True
@@ -21,3 +21,4 @@ class UserSchema(BaseModel):
 class UserUpdateDTO(BaseModel):
     fullname: Optional[str] = None
     username: Optional[str] = None
+    gender: Optional[str] = None
