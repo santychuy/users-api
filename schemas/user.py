@@ -1,7 +1,6 @@
 from typing import Optional
 from uuid import uuid4, UUID
-from pydantic import BaseModel
-from datetime import datetime
+from pydantic import BaseModel, validator
 from enum import Enum
 
 
@@ -10,15 +9,15 @@ class Gender(str, Enum):
     female = "female"
 
 
-class User(BaseModel):
-    id: Optional[UUID] = uuid4()
+class UserSchema(BaseModel):
+    id: int
     fullname: str
     username: str
-    created_date: Optional[datetime] = datetime.now()
-    gender: Gender
+
+    class Config:
+        orm_mode = True
 
 
 class UserUpdateDTO(BaseModel):
-    fullname: Optional[str]
-    username: Optional[str]
-    gender: Optional[Gender]
+    fullname: Optional[str] = None
+    username: Optional[str] = None
