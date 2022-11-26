@@ -4,4 +4,9 @@ from app import settings, app
 
 
 if __name__ == "__main__":
-    uvicorn.run("__main__:app", host="0.0.0.0", port=settings.port, reload=True)
+    uvicorn.run(
+        "__main__:app",
+        host="0.0.0.0",
+        port=settings.port,
+        reload=True if settings.env == "development" else False,
+    )
