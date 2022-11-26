@@ -21,7 +21,7 @@ def get_user(id: int, db: Session = Depends(get_db)):
 
     if user is not None:
         return user
-    raise HTTPException(status_code=404, detail=f"User was not founded")
+    raise HTTPException(status_code=404, detail="User was not founded")
 
 
 @user.post("/")
@@ -31,14 +31,16 @@ def add_user(user: UserSchema, db: Session = Depends(get_db)):
 
 
 @user.put("/{id}")
-def update_user(id: int, user_update: UserUpdateDTO, db: Session = Depends(get_db)):
+def update_user(
+    id: int, user_update: UserUpdateDTO, db: Session = Depends(get_db)
+):
     user_query = db.query(User).filter(User.id == id)
 
     if user_query.first() is not None:
         user_query.update({**user_update.dict(exclude_unset=True)})
         db.commit()
         return {"message": "User updated"}
-    raise HTTPException(status_code=404, detail=f"User does not exists")
+    raise HTTPException(status_code=404, detail="User does not exists")
 
 
 @user.delete("/{id}")
@@ -49,4 +51,4 @@ def delete_user(id: int, db: Session = Depends(get_db)):
         user_query.delete()
         db.commit()
         return {"message": "User deleted", "user_id": id}
-    raise HTTPException(status_code=404, detail=f"User does not exists")
+    raise HTTPException(status_code=404, detail="User does not exists")

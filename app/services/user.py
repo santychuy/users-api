@@ -14,7 +14,10 @@ def read_user(db: Session, id: int):
 
 def create_user(db: Session, user: UserSchema):
     new_user = User(
-        id=user.id, fullname=user.fullname, username=user.username, gender=user.gender
+        id=user.id,
+        fullname=user.fullname,
+        username=user.username,
+        gender=user.gender,
     )
     db.add(new_user)
     db.commit()
